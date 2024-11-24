@@ -1,9 +1,6 @@
-import com.example.Animal;
 import com.example.Feline;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
@@ -12,10 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FelineMockTest {
 
-    @Mock
-    private Animal animal;
-
-    private Feline feline;
+     private Feline feline;
 
     @Before
     public void setUp() {
@@ -26,8 +20,7 @@ public class FelineMockTest {
     @Test
     public void eatMeatTest() throws Exception {
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        Mockito.when(animal.getFood("Хищник")).thenReturn(expectedFood);
-        assertEquals(animal.getFood("Хищник"), feline.eatMeat());
+                assertEquals(expectedFood, feline.eatMeat());
     }
 
     @Test

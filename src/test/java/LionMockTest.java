@@ -17,9 +17,9 @@ public class LionMockTest {
     Feline feline;
 
     @Before
-    public void initLion(){
+    public void initLion() throws Exception {
         MockitoAnnotations.initMocks(this);
-        lion = new Lion(feline);
+        lion = new Lion(feline, "Самец");
     }
 
     @Test
@@ -39,6 +39,11 @@ public class LionMockTest {
         List<String> actualFood = lion.getFood();
         assertEquals(expectedFood, actualFood);
 
+    }
+
+    @Test(expected = Exception.class)
+    public void testLionInvalidSex() throws Exception {
+        new Lion(feline, "Некорректный пол");
     }
 
 }

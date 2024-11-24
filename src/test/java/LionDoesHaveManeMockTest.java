@@ -1,14 +1,17 @@
 import com.example.Lion;
+import com.example.Feline;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class LionDoesHaveManeMockTest {
 
-    String sex;
-    boolean hasMane;
+    private final String sex;
+    private final boolean hasMane;
 
     public LionDoesHaveManeMockTest(String sex, boolean hasMane) {
         this.sex = sex;
@@ -25,13 +28,8 @@ public class LionDoesHaveManeMockTest {
 
     @Test
     public void doesHaveManeTest() throws Exception {
-        Lion lion = new Lion(sex);
+        Feline feline = Mockito.mock(Feline.class);
+        Lion lion = new Lion(feline, sex);
         assertEquals(lion.doesHaveMane(), hasMane);
     }
-
-    @Test(expected = Exception.class)
-    public void testLionInvalidSex() throws Exception {
-        new Lion("Некорректный пол");
-    }
-
 }
